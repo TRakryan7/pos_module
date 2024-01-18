@@ -93,5 +93,5 @@ $route['forgot-password-step-two'] = 'authentication/forgotPasswordStepTwo';
 $route['forgot-password-step-final'] = 'authentication/forgotPasswordStepDone';
 $route['self-order/(:any)/(:any)/(:any)/(:any)'] = 'POSChecker/posAndSelfOrderMiddleman/$1/$2/$3/$4';
 $route['online-order/(:any)/(:any)'] = 'POSChecker/posAndOnlineOrderMiddleman/$1/$2';
-$route['404_override'] = '';
+$route['404_override'] = 'error';
 $route['translate_uri_dashes'] = FALSE;

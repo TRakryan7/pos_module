@@ -76,17 +76,16 @@ $company = getMainCompany();
                 }
                 ?>
                 <h1 class="title"><?php echo lang('login'); ?></h1>
-
+                <!-- Awal Form -->
                 <?php echo form_open(base_url() . 'Authentication/loginCheck', $arrayName = array('novalidate' => 'novalidate')) ?>
                 <div class="div_1 text_center display_none_login" id="loginpin"></div>
                 <input type="hidden" class="form-control display_none_login" name="login_pin" id="login_pin" placeholder="<?php echo lang('login_pin'); ?>"     value="">
                 <input type="hidden" class="form-control display_none_login" name="login_type" id="login_type_hidden" value="<?php echo isset($login_type) && $login_type?$login_type:2?>">
-
+                <!-- Login Default -->
                 <div class="input-container margin_login_top div_2">
                     <input name="email_address" type="text" value="<?php if(APPLICATION_MODE == 'demo'){ echo "admin@doorsoft.co"; }else{ echo set_value('email_address');} ?>" id="email_address" required="required"/>
                     <label for="email_address"><?php echo lang('email_address'); ?></label>
                     <div class="bar"></div>
-
                 </div>
                 <?php if (form_error('email_address')) { ?>
                     <div class="error_txt div_2">
@@ -115,6 +114,7 @@ $company = getMainCompany();
                 <?php endif;?>
                 <div class="footer div_2"><a href="<?php echo base_url()?>forgot-password-step-one"><?php echo lang('forgot_password'); ?></a></div>
                 <?php echo form_close();?>
+                <!-- Akhir Form Close -->
             </div>
             <?php if(APPLICATION_MODE == 'demo'): ?>
                 <p class="text-center custom_margin_lg margin_top7"><a target="_blank" class="btn btn-danger w-100 " href="<?=base_url()?>Authentication/index"><?php echo lang('Click'); ?> <?php echo lang('here'); ?>  <?php echo lang('if_you_face_issue_to_login'); ?></a></p>

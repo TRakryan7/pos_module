@@ -66,16 +66,24 @@ function ds($s,$t){
             echo json_encode($data);
         }else{
             $first_url = ucfirstcustom($this->uri->segment(1));
-            if($first_url=="Authentication" || $first_url=="authentication"){
+            if(!$first_url==""){
+                if($first_url=="Authentication" || $first_url=="authentication"){
+                    if ($this->session->has_userdata('user_id')) {
+                        redirect('Authentication/userProfile');
+                    } 
+                    $this->load->view('authentication/login');
+                }else{
+                    $main_company = getMainCompany();
+                    if(isServiceAccessOnly('sGmsJaFJE') && $main_company->saas_landing_page==1){
+                        $this->load->view('saas/landing',$data);
+                    }else{
+                        $this->load->view('authentication/login');
+                    }
+                }
+            } else {
                 if ($this->session->has_userdata('user_id')) {
                     redirect('Authentication/userProfile');
-                }
-                $this->load->view('authentication/login');
-            }else{
-                $main_company = getMainCompany();
-                if(isServiceAccessOnly('sGmsJaFJE') && $main_company->saas_landing_page==1){
-                    $this->load->view('saas/landing',$data);
-                }else{
+                } else {
                     $this->load->view('authentication/login');
                 }
             }
@@ -156,6 +164,7 @@ function ds($s,$t){
         if($this->input->post('submit') != 'submit'){
             redirect("Authentication/index");
         }
+
         $login_type = htmlspecialcharscustom($this->input->post($this->security->xss_clean('login_type')));
 
         if($login_type==2){
@@ -888,6 +897,7 @@ function ds($s,$t){
         $user_id = $this->session->userdata('user_id');
         $today = date("Y-m-d",strtotime('today'));
         $check_data = checkAttendance($today,$user_id);
+
         if($check_data){
             $attendance= array();
             $attendance['out_time'] = date("H:i:s");

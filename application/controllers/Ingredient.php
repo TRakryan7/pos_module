@@ -137,6 +137,7 @@ class Ingredient extends Cl_Controller {
             $this->form_validation->set_rules('purchase_unit_id',lang('unit'), 'required');
             $this->form_validation->set_rules('consumption_unit_id',lang('unit'), 'required');
             $this->form_validation->set_rules('conversion_rate',lang('unit'), 'required');
+            // var_dump($this->session->userdata('user_id'));
             if ($this->form_validation->run() == TRUE) {
                 $fmc_info = array();
                 $fmc_info['name'] = htmlspecialcharscustom($this->input->post($this->security->xss_clean('name')));
